@@ -138,6 +138,7 @@ module opendram_mc#(
     ,output                         rd_data_end_mc2ni
     ,output [DQ_WIDTH*8-1:0]        rd_data_phy2mc
 
+    ,input  wire [CH_WIDTH-1:0]       channel
     ,input  wire [RNK_WIDTH-1:0]      rank
     ,input  wire [BNK_WIDTH-1:0]      bank
     ,input  wire [BG_WIDTH-1:0]       group
@@ -369,6 +370,7 @@ module opendram_mc#(
         .i_clk(clk),
         .i_rstn(rst_nr1),
 
+        .i_channel            (channel),
         .i_rank               (rank),
         .i_group              (group),
         .i_bank               (bank),

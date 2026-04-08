@@ -23,7 +23,6 @@ module command_generator_b#(
     parameter BNK_SEL_WIDTH     = 2,
     parameter ROW_SEL_WIDTH     = 18,
     parameter COL_SEL_WIDTH     = 10,
-    parameter ADDR_WIDTH        = (RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + COL_SEL_WIDTH + ROW_SEL_WIDTH),
 
     parameter DATA_PTR_WIDTH    = 5,
     parameter CMD_TYPE_WIDTH    = 3,
@@ -79,6 +78,8 @@ module command_generator_b#(
     input wire                      i_open_request_allowed,
     input wire                      i_close_request_allowed
     );
+    
+    localparam ADDR_WIDTH = CH_SEL_WIDTH + RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + ROW_SEL_WIDTH + COL_SEL_WIDTH;
 
     localparam ADDR_COL_LSB = 0;
     localparam ADDR_COL_MSB = ADDR_COL_LSB + COL_SEL_WIDTH - 1;

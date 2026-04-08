@@ -28,7 +28,6 @@ module request_scheduler_b#(
     parameter BNK_SEL_WIDTH = 2,
     parameter ROW_SEL_WIDTH = 18,
     parameter COL_SEL_WIDTH = 10,
-    parameter ADDR_WIDTH = (RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + COL_SEL_WIDTH + ROW_SEL_WIDTH),
 
     parameter DPTR_WIDTH = 5,
     parameter PTR_WIDTH = DPTR_WIDTH + 1,
@@ -47,6 +46,7 @@ module request_scheduler_b#(
     input wire i_clk,
     input wire i_rstn,
     
+    input wire [CH_SEL_WIDTH-1:0]   i_channel,
     input wire [RNK_SEL_WIDTH-1:0]  i_rank,
     input wire [BG_SEL_WIDTH-1:0]   i_group,
     input wire [BNK_SEL_WIDTH-1:0]  i_bank,
@@ -98,7 +98,7 @@ module request_scheduler_b#(
     input wire i_close_request_allowed
     );
     
-    localparam ADDR_WDITH = (CH_SEL_WIDTH + RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + COL_SEL_WIDTH + ROW_SEL_WIDTH);
+    localparam ADDR_WIDTH = CH_SEL_WIDTH + RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + ROW_SEL_WIDTH + COL_SEL_WIDTH;
 
     wire [ADDR_WIDTH-1:0]   won_addr;
     wire                    won_ap;
@@ -132,7 +132,6 @@ module request_scheduler_b#(
         .BNK_SEL_WIDTH(BNK_SEL_WIDTH),
         .ROW_SEL_WIDTH(ROW_SEL_WIDTH),
         .COL_SEL_WIDTH(COL_SEL_WIDTH),
-        .ADDR_WIDTH(ADDR_WIDTH),
 
         .DATA_PTR_WIDTH(DPTR_WIDTH),
         .CMD_TYPE_WIDTH(CMD_TYPE_WIDTH),
@@ -201,7 +200,6 @@ module request_scheduler_b#(
         .BNK_SEL_WIDTH(BNK_SEL_WIDTH),
         .ROW_SEL_WIDTH(ROW_SEL_WIDTH),
         .COL_SEL_WIDTH(COL_SEL_WIDTH),
-        .ADDR_WIDTH(ADDR_WIDTH),
 
         .GFIFO_SIZE(GFIFO_SIZE),
         .DPTR_WIDTH(DPTR_WIDTH),
@@ -214,7 +212,7 @@ module request_scheduler_b#(
         .i_clk(i_clk),
         .i_rstn(i_rstn),
 
-        .i_channel(1'b0),
+        .i_channel(i_channel),
         .i_rank(i_rank),
         .i_group(i_group),
         .i_bank(i_bank),

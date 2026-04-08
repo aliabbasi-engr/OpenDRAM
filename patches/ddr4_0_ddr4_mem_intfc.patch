@@ -1,5 +1,5 @@
---- ../gen/ddr4_0_ex/ddr4_0_ex.srcs/sources_1/ip/ddr4_0/rtl/ip_top/ddr4_0_ddr4_mem_intfc.sv	2026-03-16 16:42:14.000000000 -0400
-+++ ./ddr4_0_ddr4_mem_intfc.sv	2026-03-16 16:27:04.276961600 -0400
+--- ../gen/ddr4_0_ex/ddr4_0_ex.srcs/sources_1/ip/ddr4_0/rtl/ip_top/ddr4_0_ddr4_mem_intfc.sv	2026-04-08 11:57:20.000000000 -0400
++++ ./ddr4_0_ddr4_mem_intfc.sv	2026-04-08 11:59:29.590096300 -0400
 @@ -64,6 +64,7 @@
  // Revision History :
  //*****************************************************************************
@@ -28,7 +28,7 @@
  )
    (
      input                           sys_clk_p
-@@ -761,166 +775,141 @@
+@@ -761,166 +775,142 @@
  localparam tWTR_L_HOST = (LRDIMM_MODE=="ON") ? tWTR_L + LRDIMM_DELAY : tWTR_L;
  localparam tRTW_HOST   = (LRDIMM_MODE=="ON") ? tRTW + LRDIMM_DELAY : tRTW;
  
@@ -297,6 +297,7 @@
 +    ,.winInjTxn               (winInjTxn)   
 +    ,.gt_data_ready           (gt_data_ready)          
 +    ,.win_rank_cas            (winRank)
++    ,.channel                 (1'b0)
 +    ,.rank                    (rank)
 +    ,.group                   (group)
 +    ,.bank                    (bank)
@@ -330,7 +331,7 @@
  );
  
    assign rdDataOffset = 1'b0;
-@@ -1232,7 +1221,7 @@
+@@ -1232,7 +1222,7 @@
     ,.mcRdCAS                     (mcRdCAS)
     ,.mcWrCAS                     (mcWrCAS)
     ,.winInjTxn                   (winInjTxn)

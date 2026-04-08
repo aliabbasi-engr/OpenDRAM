@@ -27,7 +27,6 @@ module request_scheduler_wrapper#(
     parameter BNK_SEL_WIDTH = 2,
     parameter ROW_SEL_WIDTH = 17,
     parameter COL_SEL_WIDTH = 10,
-    parameter ADDR_WIDTH = (RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + COL_SEL_WIDTH + ROW_SEL_WIDTH),
 
     parameter NUM_CH = 1,
     parameter NUM_RNK = 1,
@@ -50,6 +49,7 @@ module request_scheduler_wrapper#(
     input wire i_clk,
     input wire i_rstn,
     
+    input wire [CH_SEL_WIDTH-1:0]   i_channel,
     input wire [RNK_SEL_WIDTH-1:0]  i_rank,
     input wire [BG_SEL_WIDTH-1:0]   i_group,
     input wire [BNK_SEL_WIDTH-1:0]  i_bank,
@@ -153,7 +153,6 @@ module request_scheduler_wrapper#(
                 .BNK_SEL_WIDTH(BNK_SEL_WIDTH),
                 .ROW_SEL_WIDTH(ROW_SEL_WIDTH),
                 .COL_SEL_WIDTH(COL_SEL_WIDTH),
-                .ADDR_WIDTH(ADDR_WIDTH),
 
                 .DPTR_WIDTH(DPTR_WIDTH),
                 .PTR_WIDTH(PTR_WIDTH),
@@ -173,6 +172,7 @@ module request_scheduler_wrapper#(
                 .i_rstn(i_rstn),
     
                 // NI Interface
+                .i_channel(i_channel),
                 .i_rank(i_rank),
                 .i_group(i_group),
                 .i_bank(i_bank),

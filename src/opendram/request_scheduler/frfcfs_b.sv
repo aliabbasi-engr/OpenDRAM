@@ -21,7 +21,6 @@ module frfcfs_b#(
     parameter BNK_SEL_WIDTH = 2,
     parameter ROW_SEL_WIDTH = 18,
     parameter COL_SEL_WIDTH = 10,
-    parameter ADDR_WIDTH    = (RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + COL_SEL_WIDTH + ROW_SEL_WIDTH),
 
     parameter GFIFO_SIZE        = 8,
     parameter DPTR_WIDTH        = 5,
@@ -67,6 +66,8 @@ module frfcfs_b#(
     output wire o_is_full
 
     );
+    
+    localparam ADDR_WIDTH = CH_SEL_WIDTH + RNK_SEL_WIDTH + BG_SEL_WIDTH + BNK_SEL_WIDTH + ROW_SEL_WIDTH + COL_SEL_WIDTH;
     
     localparam PACKET_WIDTH = (ADDR_WIDTH + 1 /*(1 bit for ap)*/  + 1 /*(1 bit for inject)*/ + 2 /*(2 bits for cmd)*/);
 
