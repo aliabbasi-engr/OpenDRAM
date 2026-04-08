@@ -72,7 +72,7 @@
 
 /** AXI Port configurations */
 `define AXI_ID_WIDTH 16
-`define AXI_ADDR_WIDTH 30
+`define AXI_ADDR_WIDTH 31
 `define AXI_DATA_WIDTH 512
 `define WSTRB_WIDTH `AXI_DATA_WIDTH/8
 `define AXI_BURST_LENGTH 1
